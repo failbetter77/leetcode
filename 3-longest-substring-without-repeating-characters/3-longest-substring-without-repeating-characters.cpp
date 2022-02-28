@@ -13,8 +13,8 @@ public:
                 cout << s[i] << endl;
             }
             else{
-                l=dict[s[i]]+1;
-                dict[s[i]]=i;
+                l=dict[s[i]]+1;             //l 값을 dict[s[i]]+1 로 설정해서, 삭제위치보다 한칸 앞이 될 수 있도록하고, 
+                dict[s[i]]=i;               // dict에서 삭제 위치대신 새로 발견한 위치로 업데이트 한다. 
             }                       
             //cout << i << ":" << l << ":" << i-l+1 << endl;
             max = max< i-l+1 ? i-l+1 : max;
