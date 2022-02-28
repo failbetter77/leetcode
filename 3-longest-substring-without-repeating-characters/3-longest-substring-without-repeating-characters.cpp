@@ -1,28 +1,25 @@
 class Solution {
 public:
-	int lengthOfLongestSubstring(string s) 
-	{
-        
-        //version 2 
-		unordered_set<char> set;
-    
-		int i = 0, j = 0, n = s.size(), ans = 0;
-    
-		while( i<n && j<n)
-		{
-			if(set.find(s[j]) == set.end()) //If the character does not in the set
-			{
-				set.insert(s[j++]); //Insert the character in set and update the j counter
-				ans = max(ans, j-i); //Check if the new distance is longer than the current answer
-			}
-			else
-			{
-				set.erase(s[i++]); 
-				/*If character does exist in the set, ie. it is a repeated character, 
-				we update the left side counter i, and continue with the checking for substring. */
-			}
-		}
-    
-		return ans;
-	}
+    int lengthOfLongestSubstring(string s) {
+        // we will store a senitel value of -1 to simulate 'null'/'None' in C++
+        vector<int> chars(128, -1);
+
+        int left = 0;
+        int right = 0;
+
+        int res = 0;
+        while (right < s.length()) {
+            char r = s[right];
+
+            int index = chars[r];
+            if (index != -1 and index >= left and index < right) {
+                left = index + 1;
+            }
+            res = max(res, right - left + 1);
+
+            chars[r] = right;
+            right++;
+        }
+        return res;
+    }
 };
