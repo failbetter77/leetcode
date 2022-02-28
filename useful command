@@ -1,0 +1,2 @@
+  vector<int> dict(256, -1);      
+  
