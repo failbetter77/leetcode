@@ -6,7 +6,7 @@ public:
         for (int i = 0; i != s.length(); i++) {
             if (dict[s[i]] > start){    // dict[s[i]] > start 를 체크하는 이유는,
                                         // 이미 한번 봤던 숫자이므로, 시작점을 갱신하기 위해서다. 
-                cout << i << " : " <<start << " : " << dict[s[i]] << endl;
+                //cout << i << " : " <<start << " : " << dict[s[i]] << endl;
                 start = dict[s[i]];
                 //cout << i << ": "<< s[i] << " : " <<start << endl;
                 
