@@ -2,6 +2,11 @@ class Solution {
 public:
     
     //문제, 가장 넓은 섬의 크기를 반환하시오
+    //dfs로 풀어야했고,
+    //grid[j][i]==1 를 재귀함수를 통해 따라 들어가서 for을 도는데, 
+    //재귀함수를 통해 들어간거 자체가 일단 grid[j][i]==1 이므로, return 할때 m+1을 해주어야 한다. 
+    // 그 이외에는 dfs를 통해 카운팅한 숫자 만큼을 더한다. 
+    // 
         
     int dfs(int sr, int sc, int h, int w, vector<vector<int>>& grid){
          int dx[]={-1,0,1,0};
