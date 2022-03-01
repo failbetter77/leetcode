@@ -1,2 +1,15 @@
-  vector<int> dict(256, -1);      
+  vector<int> dict(256, -1);
+  
+  
+  
+  
+  # pass vector with call by reference  
+  bool multiplyByTwo(vector<int> &arr) {}
+  
+  vector<int> arr = {1,2,3,4,5,6,7,8,9,10};
+  bool arr_mult_by2 = multiplyByTwo(arr);
+  
+  
+  
+   
   
