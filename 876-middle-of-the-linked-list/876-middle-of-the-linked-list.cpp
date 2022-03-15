@@ -11,9 +11,17 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        vector<ListNode*> A = {head};
-        while (A.back()->next != NULL)
-            A.push_back(A.back()->next);
-        return A[A.size() / 2];
+        int cnt=0;
+        vector<ListNode*> temp;
+        ListNode* p=head;
+        
+        while(p != NULL)
+        {   
+            temp.push_back(p);
+            p=p->next;
+            //cout << p->val << endl;            
+            cnt++;
+        }
+        return temp[cnt/2];
     }
 };
