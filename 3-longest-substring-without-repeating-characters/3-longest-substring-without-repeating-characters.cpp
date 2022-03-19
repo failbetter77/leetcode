@@ -1,25 +1,30 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        
-        int r=0;
-        int l=0;
+        // head에서 이미 갖고있던 문자가 나오면, 
+        // tail을 그 문자 바로 앞으로 옮긴다. 
+        // 각 문자의 위치를 보관해야한다. 
+        if(s.size()==0)
+            return 0;
+        int dic[256]={-1,};
+        memset(dic, -1, sizeof(int) * 256);
+  
+        int t=0;
         int max=0;
-        vector<int> dict(256, -1);          // acsii코드에 대한 문자열 저장소를 만듬 index는 결국 문자이며,
-                                            // 해당값은 숫자값을 가진다. 
-        for(int i=0; i<s.size(); i++){            
-            if(dict[s[i]]<l){              // 처음 보는 알파벳일 경우
-                dict[s[i]]=i;               // 해당 알파벳의 index를 저장한다. 
-                cout << s[i] << endl;
-            }
-            else{
-                l=dict[s[i]]+1;             //l 값을 dict[s[i]]+1 로 설정해서, 삭제위치보다 한칸 앞이 될 수 있도록하고, 
-                dict[s[i]]=i;               // dict에서 삭제 위치대신 새로 발견한 위치로 업데이트 한다. 
-            }                       
-            //cout << i << ":" << l << ":" << i-l+1 << endl;
-            max = max< i-l+1 ? i-l+1 : max;
+        
+        for(int i=0; i< s.size(); i++){
+            //h++; // 한칸 전진
             
+            if(dic[s[i]]<t){                 
+                dic[s[i]]=i;    //box에 s[h] 원소의 위치를 넣음;
+            }
+            else{// 움직인 자리가 0이 아니면, 새로운 자리로 교체.
+               t=dic[s[i]]+1; // 기존자리 한칸 앞에 두고, 
+               dic[s[i]]=i;   // 기존 자리의 index를 현재값으로 갱신 
+                
+            }
+            max = max > (i-t)+1 ? max : i-t+1;
         }
-        return max;
+        return max;   
     }
 };
