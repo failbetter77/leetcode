@@ -30,21 +30,20 @@
 class Solution {
 public:
     int depthSum(vector<NestedInteger>& nestedList) {
-        return findD(nestedList,1);
-    }
-     
-     int findD(vector<NestedInteger>& list, int depth)
-     {
-         int total=0;
-             for (NestedInteger nested : list) {// 전체리스트 순회
-                if(nested.isInteger()){         // 단일 정수인지 확인, 
-                  total+=nested.getInteger()*depth;
-                }else{                              //nested가 있고, 까야함. 
-                    total+=findD(nested.getList(),depth+1);
+        
+            return dfs(nestedList, 1);
+        }
+    
+    int dfs(vector<NestedInteger>& nestedList, int depth){
+            int total=0;
+            for(auto nested : nestedList){
+                if(nested.isInteger()){
+                    total+=depth*nested.getInteger();
+                }else{
+                     total+=dfs(nested.getList(),depth+1);
                 }
+                    
             }
-          return total;
-     }        
-
-       
+            return total;
+    }
 };
