@@ -1,42 +1,41 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
-    
     vector<int> rightSideView(TreeNode* root) {
-         if (!root) {
-            return {};
-        }
-        vector<int> view;
-        queue<TreeNode*> todo;
-        todo.push(root);
-        while (!todo.empty()) {
-            int n = todo.size();
-            for (int i = 0; i < n; i++)
-            {
-                TreeNode* node = todo.front();
-                todo.pop();
-                if (i == n - 1) {
-                    view.push_back(node -> val);
-                }
-                if (node -> left) {
-                    todo.push(node -> left);
-                }
-                if (node -> right) {
-                    todo.push(node -> right);
-                }
+        
+        vector<int>ans;
+        if(root==nullptr)
+            return ans;
+        
+        queue<TreeNode*>q;
+        
+        q.push(root); // Initially push the root node
+        q.push(nullptr); // Then push nullptr, as level=0 contains only the root node
+        
+        TreeNode* curr;
+        
+        while(!q.empty()){
+            if(q.front()!=nullptr){ // if the end of current level is not reached
+                
+                curr=q.front(); // keep the current node
+                
+                // push the left and right child of curr node into the queue if exists
+                if(curr->left) q.push(curr->left);              
+                if(curr->right) q.push(curr->right);
+                
+                q.pop(); //remove curr node from queue
+            }
+            else{ // nullptr signifies the end of the current level, so need to add the last element of this level to ans
+                
+                // last element of the level = last deleted element of queue from front
+                ans.push_back(curr->val); // curr contains the last deleted element of queue from front
+                
+                q.pop(); // remove the nullptr, as this level has been processed 
+                
+                //if the queue is not empty then again push nullptr to keep a tag at the end of the next level
+                if(!q.empty()) q.push(nullptr);
             }
         }
-        return view;
-   
+        
+        return ans;
     }
 };
