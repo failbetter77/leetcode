@@ -32,7 +32,7 @@ public:
             for(int i=0; i<w; i++){
                 if(grid[j][i]==1){
                     maxArea=max(dfs(j,i,h,w,grid),maxArea);
-                    cout << j << " : " << i << endl;
+                    //cout << j << " : " << i << endl;
                     
                 }
             }
