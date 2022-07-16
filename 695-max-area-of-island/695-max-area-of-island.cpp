@@ -16,19 +16,25 @@ public:
                     q.push({j,i});
                     int cnt=1;   
                     grid[j][i]=0;
-                    cout << j<<":" <<i<<"\n";                 
+                      
                     while(!q.empty()){
                         int n,m;
                         tie(n,m) = q.front();
                         q.pop();
                                
-                        if(m+1<w && grid[n][m+1]==1) {q.push({n,m+1}); grid[n][m+1]=0; cnt++; cout << n<<":" <<m+1<<"\n";}
-                        if(n+1<h && grid[n+1][m]==1) {q.push({n+1,m}); grid[n+1][m]=0; cnt++; cout << n+1<<":" <<m<<"\n";}
-                        if(n-1>=0 && grid[n-1][m]==1) {q.push({n-1,m}); grid[n-1][m]=0; cnt++; cout << n-1<<":" <<m<<"\n";}
-                        if(m-1>=0 && grid[n][m-1]==1) {q.push({n,m-1}); grid[n][m-1]=0; cnt++; cout << n-1<<":" <<m<<"\n";}
+                        //if(m+1<w && grid[n][m+1]==1) {q.push({n,m+1}); grid[n][m+1]=0; cnt++; cout << n<<":" <<m+1<<"\n";}
+                        //if(n+1<h && grid[n+1][m]==1) {q.push({n+1,m}); grid[n+1][m]=0; cnt++; cout << n+1<<":" <<m<<"\n";}
+                        //if(n-1>=0 && grid[n-1][m]==1) {q.push({n-1,m}); grid[n-1][m]=0; cnt++; cout << n-1<<":" <<m<<"\n";}
+                        //if(m-1>=0 && grid[n][m-1]==1) {q.push({n,m-1}); grid[n][m-1]=0; cnt++; cout << n-1<<":" <<m<<"\n";}
+                        
+                        
+                        if(m+1<w && grid[n][m+1]==1) {q.push({n,m+1}); grid[n][m+1]=0; cnt++;}
+                        if(n+1<h && grid[n+1][m]==1) {q.push({n+1,m}); grid[n+1][m]=0; cnt++;}
+                        if(n-1>=0 && grid[n-1][m]==1) {q.push({n-1,m}); grid[n-1][m]=0; cnt++;}
+                        if(m-1>=0 && grid[n][m-1]==1) {q.push({n,m-1}); grid[n][m-1]=0; cnt++;}
                     }
                     if (max<cnt)max=cnt;
-                    cout << "\n";
+                   
                 }
             }
         }
